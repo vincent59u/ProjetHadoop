@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce Brésilien</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../web/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../web/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">E-commerce Brésilien</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <h2 class="my-4">Questions</h2>
+                <div class="list-group">
+                    <a href="question1.html" class="list-group-item active">Question 1</a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card card-outline-secondary mt-4">
+                    <div class="card-header">
+                        <h3 class="card-title">Question 1</h3>
+                        <h4>Répartition des produits achetés en fontion du volume en cm<sup>3</sup></h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Le but de cette question est de pouvoir déterminer la taille de l’entrepôt de stockage mais
+                            également le type de cartons qu’il faut utiliser pour l’expédition des produits que nous
+                            déciderons de vendre.<br>
+
+                            <h3>Fichier et attributs utilisés</h3>
+                            Le fichier utilisé pour cette question est le fichier : <strong><i>olist_product_dataset.csv</i></strong>.<br>
+                            Les attributs utilisés pour calculer le volume des produits sont : <strong><i>product_length_cm, product_height_cm</i></strong> et <strong><i>product_width_cm</i></strong>.<br>
+
+                            <h3>Mapper</h3>
+                            Le mapper calcul le volume de chaque produit avec les 3 attributs nécessaires. La clef est donc la
+                            fourchette de valeur à laquelle appartient chaque volume. La valeur associée a cette clef est la valeur 1.<br>
+                            <h3>Redcucer</h3>
+                            Le reducer compte le nombre d'occurence de chaque clef (donc de tranche de volume). Les données sont ensuite
+                            triées afin de faciliter l'affichage dans le graphique.<br>
+                            <h3>Analyse économique</h3>
+                            //TODO par les économistes<br>
+                            <h3>Graphique</h3>
+                            <canvas id="question1"></canvas>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <br><br>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Jordan DEFER, Corentin BERNARD, Kawtar IKSI et Matthieu VINCENT 2018</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../web/vendor/jquery/jquery.min.js"></script>
+    <script src="../../web/vendor/chartjs/chartjs.min.js"></script>
+    <script src="../../web/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chart -->
+    <script src="../../web/js/question1.js"></script>
+</body>
+</html>
