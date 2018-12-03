@@ -26,7 +26,7 @@
         });
     };
 
-    const makeTable = lines => {
+    const processData = lines => {
         label = [];
         data = [];
         lines.forEach(line => {
@@ -40,11 +40,11 @@
         return [label, data];
     };
 
-    const getAndDrawData = () => {
+    const loadData = () => {
         $.get('../../output/question1/part-r-00000', function (data) {
-            drawChart(makeTable(data.split('\n')))
+            drawChart(processData(data.split('\n')))
         });
     };
 
-    getAndDrawData();
+    loadData();
 })();
