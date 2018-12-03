@@ -1,6 +1,6 @@
 (() => {
 
-    ctx = document.getElementById('question1').getContext('2d');
+    ctx = document.getElementById('question4').getContext('2d');
 
     const drawChart = (data) => {
         new Chart(ctx, {

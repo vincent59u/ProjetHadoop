@@ -1,4 +1,4 @@
-package fr.miage.matthieu.Question1;
+package fr.miage.matthieu.Question4;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -7,9 +7,10 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import java.io.File;
-import org.apache.commons.io.FileUtils;
 
+/**
+ * Class Question qui permet de connaitre les tranches de volume par produit.
+ */
 public class Question {
 
     public static void main(String[] args) throws Exception

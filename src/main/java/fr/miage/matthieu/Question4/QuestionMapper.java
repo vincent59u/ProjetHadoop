@@ -1,4 +1,4 @@
-package fr.miage.matthieu.Question1;
+package fr.miage.matthieu.Question4;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
