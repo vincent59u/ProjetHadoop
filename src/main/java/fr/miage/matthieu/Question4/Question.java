@@ -1,4 +1,4 @@
-package fr.miage.matthieu.Question4;
+package fr.miage.matthieu.question4;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -25,7 +25,7 @@ public class Question {
         job.setJarByClass(Question.class);
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
-        Path outputPath = new Path("./output/question1");
+        Path outputPath = new Path("./output/question4");
         FileOutputFormat.setOutputPath(job, outputPath);
         outputPath.getFileSystem(conf).delete(outputPath,true);
 

@@ -1,4 +1,4 @@
-package fr.miage.matthieu.Question3;
+package fr.miage.matthieu.question3;
 
 public class QuestionMapper {
 }

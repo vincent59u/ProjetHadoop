@@ -1,4 +1,4 @@
-package fr.miage.matthieu.Question4;
+package fr.miage.matthieu.question4;
 
 import java.io.IOException;
 import java.util.*;

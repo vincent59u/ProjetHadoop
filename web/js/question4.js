@@ -41,7 +41,7 @@
     };
 
     const loadData = () => {
-        $.get('../../output/question1/part-r-00000', function (data) {
+        $.get('../../output/question4/part-r-00000', function (data) {
             drawChart(processData(data.split('\n')))
         });
     };
