@@ -1,6 +1,7 @@
 fr/miage/matthieu/question3/QuestionReducer.class
 fr/miage/matthieu/question4/QuestionReducer.class
-fr/miage/matthieu/question3/QuestionMapper.class
+fr/miage/matthieu/question3/OrderMapper.class
+fr/miage/matthieu/question3/OrderReviewMapper.class
 fr/miage/matthieu/question3/Question.class
 fr/miage/matthieu/question4/Question.class
 fr/miage/matthieu/question4/QuestionMapper.class
