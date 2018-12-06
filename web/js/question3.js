@@ -20,6 +20,13 @@
                 title: {
                     display: true,
                     text: 'Corrélation entre le délai de livraison et la note de satisfaction'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
                 }
             }
         });
