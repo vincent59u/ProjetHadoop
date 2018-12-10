@@ -19,9 +19,6 @@ public class OrderMapper extends Mapper<LongWritable, Text, Text, Text> {
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException
     {
-        if (key.get() == 0)
-            return;
-
         String ligne = value.toString();
         String[] tokens = ligne.split(",");
 

@@ -15,9 +15,6 @@ public class QuestionMapper extends Mapper<LongWritable, Text, Text, IntWritable
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException
     {
-        if (key.get() == 0)
-            return;
-
         String ligne = value.toString();
         String[] tokens = ligne.split(",");
 

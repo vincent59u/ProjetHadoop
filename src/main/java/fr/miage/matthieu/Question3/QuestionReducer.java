@@ -1,6 +1,5 @@
 package fr.miage.matthieu.question3;
 
-import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -8,12 +7,12 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.*;
 
-public class QuestionReducer extends Reducer<Text, Text, IntWritable, DoubleWritable>{
+public class QuestionReducer extends Reducer<Text, Text, IntWritable, Text>{
 
     private String delai, note;
     private int error_count = 0;
 
-    private Map<Integer, Double> delaiNoteSatisfaction;
+    private Map<Integer, Double[]> delaiNoteSatisfaction;
 
     @Override
     public void setup(Context context) {
@@ -35,9 +34,12 @@ public class QuestionReducer extends Reducer<Text, Text, IntWritable, DoubleWrit
                 try {
                     int clef = Integer.parseInt(delai);
                     if (delaiNoteSatisfaction.containsKey(clef)) {
-                        delaiNoteSatisfaction.put(clef, (delaiNoteSatisfaction.get(clef) + Double.parseDouble(note)) / 2);
+                        Double[] tab = delaiNoteSatisfaction.get(clef);
+                        tab[0] = (tab[0] + Double.parseDouble(note)) / 2;
+                        tab[1]++;
+                        delaiNoteSatisfaction.put(clef, tab);
                     } else {
-                        delaiNoteSatisfaction.put(clef, Double.parseDouble(note));
+                        delaiNoteSatisfaction.put(clef, new Double[] {Double.parseDouble(note), 1.0});
                     }
                 } catch (Exception ex){
                     //ex.printStackTrace();
@@ -53,7 +55,8 @@ public class QuestionReducer extends Reducer<Text, Text, IntWritable, DoubleWrit
         List<Integer> keyList = new ArrayList(delaiNoteSatisfaction.keySet());
         keyList.forEach(key -> {
             try {
-                context.write(new IntWritable(key), new DoubleWritable(delaiNoteSatisfaction.get(key)));
+                Double[] tab = delaiNoteSatisfaction.get(key);
+                context.write(new IntWritable(key), new Text(tab[0].toString() + "\t" + tab[1].intValue()));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
