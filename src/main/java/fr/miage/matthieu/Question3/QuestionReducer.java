@@ -7,6 +7,13 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Class QuestionReducer
+ *
+ * Regroupe le délai de livraison et la note de satisfaction en fonction de l'order_id.
+ * Compte également le nombre de commande par jours de délai de livraison
+ * [délai => note_satisfaction, total]
+ */
 public class QuestionReducer extends Reducer<Text, Text, IntWritable, Text>{
 
     private String delai, note;
@@ -56,10 +63,8 @@ public class QuestionReducer extends Reducer<Text, Text, IntWritable, Text>{
         keyList.forEach(key -> {
             try {
                 Double[] tab = delaiNoteSatisfaction.get(key);
-                context.write(new IntWritable(key), new Text(tab[0].toString() + "\t" + tab[1].intValue()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
+                context.write(new IntWritable(key), new Text(tab[0].toString() + "," + tab[1].intValue()));
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });

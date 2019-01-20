@@ -32,7 +32,7 @@
         lines.forEach(line => {
             if(line !== "")
             {
-                const tableLine = line.split('\t');
+                const tableLine = line.split(',');
                 label.push(tableLine[0]);
                 data.push(parseInt(tableLine[1]));
             }

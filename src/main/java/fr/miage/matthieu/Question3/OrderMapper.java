@@ -11,6 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class OrderMapper
+ *
+ * Calcul le délai de libraison si la commande est "delivered" et lui associe l'order_id en clef
+ * [order_id, delai_livraison]
+ */
 public class OrderMapper extends Mapper<LongWritable, Text, Text, Text> {
     private Text delaiLivraison = new Text();
     private int error_count = 0;

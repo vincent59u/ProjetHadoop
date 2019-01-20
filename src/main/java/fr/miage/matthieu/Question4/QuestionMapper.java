@@ -7,6 +7,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+/**
+ * Class Mapper
+ *
+ * Pour chaque ligne du fichier, on calcul le volume du produit et on lui associe la valeur 1.
+ * [volume => 1]
+ */
 public class QuestionMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
     private Text volume = new Text();

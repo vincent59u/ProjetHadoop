@@ -8,6 +8,12 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
+/**
+ * Class Reducer
+ *
+ * Permet de calculer le nombre de produit par tranche de volume en sortie du Mapper.
+ * [volume => nombre d'appartition]
+ */
 public class QuestionReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
 
     private Map<Text, Integer> volumeProductMap;

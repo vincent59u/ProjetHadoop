@@ -70,7 +70,7 @@
         lines.forEach(line => {
             if(line !== "")
             {
-                const tableLine = line.split('\t');
+                const tableLine = line.split(',');
                 label.push(tableLine[0]);
                 data.push(parseFloat(tableLine[1]).toFixed(3));
                 data_1.push(parseInt(tableLine[2]));

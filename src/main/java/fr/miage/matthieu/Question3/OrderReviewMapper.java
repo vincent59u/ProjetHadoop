@@ -6,6 +6,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+/**
+ * Class OrderReviewMapper
+ *
+ * Associe l'order_id à la note de satisfaction de cette même commande
+ * [order_id, note_satisfaction]
+ */
 public class OrderReviewMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override

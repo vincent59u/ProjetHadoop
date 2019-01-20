@@ -10,6 +10,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Class Question qui permet de connaitre les tranches de volume par produit.
+ *
+ * Fichier : olist_products_dataset.csv
  */
 public class Question {
 
@@ -21,6 +23,7 @@ public class Question {
         }
 
         Configuration conf = new Configuration();
+        conf.set("mapreduce.output.textoutputformat.separator", ",");
         Job job = Job.getInstance(conf, "Volume des produits");
         job.setJarByClass(Question.class);
 

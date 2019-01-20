@@ -10,6 +10,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Class Question qui étudie les délais de livraison par rapport à la note de satisfaction
+ *
+ * Fichiers : olist_orders_dataset.csv, olist_order_reviews_dataset.csv
  */
 public class Question {
 
@@ -21,13 +23,14 @@ public class Question {
         }
 
         Configuration conf = new Configuration();
+        conf.set("mapreduce.output.textoutputformat.separator", ",");
         Job job = Job.getInstance(conf, "Corrélation délai livraison avec la note de satisfaction");
         job.setJarByClass(fr.miage.matthieu.question3.Question.class);
 
         MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, fr.miage.matthieu.question3.OrderMapper.class);
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, fr.miage.matthieu.question3.OrderReviewMapper.class);
 
-        Path outputPath = new Path("./output/question3");
+        Path outputPath = new Path("./output/Question3");
         FileOutputFormat.setOutputPath(job, outputPath);
         outputPath.getFileSystem(conf).delete(outputPath,true);
 
