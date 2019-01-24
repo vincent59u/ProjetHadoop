@@ -11,8 +11,8 @@
                 labels: data[0],
                 datasets: [{
                     label: "Note moyenne",
+                    borderColor: "#c6e2d2",
                     backgroundColor: "#30aeae",
-                    borderColor: "#30aeae",
                     data: data[1],
                 }]
             },
@@ -21,7 +21,7 @@
             options: {
                 title: {
                     display: true,
-                    text: 'Corrélation entre le délai de livraison et la note de satisfaction'
+                    text: 'Corrélation entre le délai de livraison (en jours) et la note de satisfaction'
                 },
                 scales: {
                     yAxes: [{
@@ -42,8 +42,8 @@
                 datasets: [{
                     label: "Nombre de commande",
                     fill: false,
-                    backgroundColor: "#30aeae",
                     borderColor: "#30aeae",
+                    backgroundColor: "#c6e2d2",
                     data: data[2],
                 }]
             },
@@ -52,7 +52,7 @@
             options: {
                 title: {
                     display: true,
-                    text: 'Nombre de livraison en fonction du délai de livraison'
+                    text: 'Nombre de livraison en fonction du délai de livraison (en jours)'
                 },
                 scales: {
                     yAxes: [{
