@@ -34,7 +34,8 @@ public class QuestionReducer extends Reducer<Text, IntWritable, Text, IntWritabl
     }
 
     @Override
-    public void cleanup(Context context){
+    public void cleanup(Context context)
+    {
         List<Text> keyList = new ArrayList(volumeProductMap.keySet());
         keyList.sort(Comparator.comparingInt((Text t) -> Integer.valueOf(t.toString().split("-")[0])));
         keyList.forEach(key -> {
