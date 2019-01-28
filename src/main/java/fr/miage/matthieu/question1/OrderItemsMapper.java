@@ -6,6 +6,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
+/**
+ * Class OrderItemsMapper
+ *
+ * Associe la valeur 1 pour chaque product_id
+ * [product_id, 1]
+ */
 public class OrderItemsMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override

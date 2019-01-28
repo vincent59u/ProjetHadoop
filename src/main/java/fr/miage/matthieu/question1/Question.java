@@ -2,13 +2,17 @@ package fr.miage.matthieu.question1;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+/**
+ * Class Question qui étudie les délais de livraison par rapport à la note de satisfaction
+ *
+ * Fichiers : olist_products_dataset.csv, olist_order_items_dataset.csv
+ */
 public class Question {
 
     public static void main(String[] args) throws Exception

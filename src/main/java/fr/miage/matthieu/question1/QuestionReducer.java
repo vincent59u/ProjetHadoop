@@ -7,6 +7,12 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Class QuestionReducer
+ *
+ * Regroupe le nom de la catégorie produit et le nombre de commande qui concerne cette dernière grâce au product_id.
+ * [product_categorie_name => total]
+ */
 public class QuestionReducer extends Reducer<Text, Text, Text, IntWritable> {
 
     private HashMap<String, Integer> orderItems;
