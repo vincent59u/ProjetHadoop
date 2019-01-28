@@ -51,20 +51,31 @@
                             également le type de cartons qu’il faut utiliser pour l’expédition des produits que nous
                             déciderons de vendre.<br>
 
-                            <h3>Fichier et attributs utilisés</h3>
-                            Le fichier utilisé pour cette question est le fichier : <strong><i>olist_product_dataset.csv</i></strong>.<br>
-                            Les attributs utilisés pour calculer le volume des produits sont : <strong><i>product_length_cm, product_height_cm</i></strong> et <strong><i>product_width_cm</i></strong>.<br><br>
+                            <h3>Fichiers et attributs utilisés</h3>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>Fichiers</th>
+                                    <th>Attributs</th>
+                                </tr>
+                                <tr>
+                                    <td>olist_product_dataset.csv</td>
+                                    <td>product_length_cm, product_height_cm, product_width_cm</td>
+                                </tr>
+                            </table>
 
                             <h3>Mapper</h3>
-                            Le mapper calcul le volume de chaque produit avec les 3 attributs nécessaires. La clef est donc la
-                            fourchette de valeur à laquelle appartient chaque volume. La valeur associée a cette clef est la valeur 1.<br><br>
+                            Le mapper calcul le volume de chaque produit avec les trois attributs (cités ci-dessus). La clef est donc la
+                            tranche de valeur à laquelle appartient le volume de chaque produit. La valeur associée à cette clef est la valeur 1.<br><br>
 
                             <h3>Redcucer</h3>
-                            Le reducer compte le nombre d'occurence de chaque clef (donc de tranche de volume). Les données sont ensuite
+                            Le reducer compte le nombre d'occurrence de chaque clef (donc de tranche de volume). Les données sont ensuite
                             triées afin de faciliter l'affichage dans le graphique.<br><br>
 
                             <h3>Analyse économique</h3>
-                            //TODO<br><br>
+                            On remarque que la grande majorité des produits vendus ont un volume supérieur à 16000 cm<sup>3</sup>.
+                            Cependant, les produits de petit volume sont également bien représentés. Les produits possédant un volume intermédiaire
+                            ne concerne pas beaucoup de ventes. Nous pouvons en déduire qu'il serait nécessaire d'adopter une politique
+                            de frais de port adapté à la taille des produits les plus vendus.<br><br>
 
                             <h3>Graphique</h3>
                             <canvas id="question4"></canvas>

@@ -47,19 +47,72 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                    //TODO<br>
+                    Cette question permet de connaitre l'évolution des frais de ports pratiqués par l'ensemble des vendeurs
+                    en fonction de la distance les séparants de leurs clients.<br>
 
-                    <h3>Fichier et attributs utilisés</h3>
-                    //TODO<br><br>
+                    <h3>Fichiers et attributs utilisés</h3>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Fichiers</th>
+                            <th>Attributs</th>
+                        </tr>
+                        <tr>
+                            <td>olist_customers_dataset.csv</td>
+                            <td>customer_zip_code_prefix, customer_id</td>
+                        </tr>
+                        <tr>
+                            <td>olist_sellers_dataset.csv</td>
+                            <td>seller_zip_code_prefix, seller_id</td>
+                        </tr>
+                        <tr>
+                            <td>olist_geolocation_dataset.csv</td>
+                            <td>geolocation_zip_code_prefix, geolocation_lat, geolocation_lng</td>
+                        </tr>
+                        <tr>
+                            <td>olist_orders_dataset.csv</td>
+                            <td>order_id, customer_id</td>
+                        </tr>
+                        <tr>
+                            <td>customersGeolocation-r-00000<sup>*</sup></td>
+                            <td>customer_id, latitude, longitude</td>
+                        </tr>
+                        <tr>
+                            <td>olist_order_items_dataset.csv</td>
+                            <td>order_id, freight_value</td>
+                        </tr>
+                        <tr>
+                            <td>sellersGeolocation-r-00000<sup>*</sup></td>
+                            <td>seller_id, latitude, longitude</td>
+                        </tr>
+                        <tr>
+                            <td>customer_order_location-r-00000<sup>*</sup></td>
+                            <td>order_id, latitude, longitude</td>
+                        </tr>
+                        <tr>
+                            <td>seller_order_location-r-00000<sup>*</sup></td>
+                            <td>order_id, latitude, longitude, freight_value</td>
+                        </tr>
+                    </table>
+                    <small><sup>*</sup> Fichiers générés par un Job Hadoop auparavant</small>
 
                     <h3>Mapper</h3>
-                    //TODO<br><br>
+                    Cette question nécessite plusieurs phases de map reduce.<br>
+                    La première phase de mapping associe le zip_code_prefix avec les attributs customer_id, seller_id, geolocation_lat etgeolocation_lng issus des trois premiers fichiers du tableau ci-dessus.<br>
+                    La seconde phase de mapping associe order_id aux informations de géolocalisation des vendeurs et clients. Cette opération est réalisée
+                    à partir des fichiers customersGeolocation-r-00000, olist_orders_dataset.csv, sellersGeolocation-r-00000, olist_order_items_dataset.csv<br>
+                    Enfin, un dernier mapper associe pour chaque commande les informations de géolocalisation des clients et vendeurs ainsi que le montant des frais de ports. Ce mapper s'effectue sur les deux derniers fichiers du tableau précédent.<br><br>
 
                     <h3>Redcucer</h3>
-                    //TODO<br><br>
+                    Comme cette question nécessite trois mappers différents, il y a donc trois reducers.<br>
+                    Le premier génère deux fichiers qui sont customersGeolocation-r-00000 et sellersGeolocation-r-00000 qui contiennent le customer_id ou seller_id avec la latitude et longitude.<br>
+                    Le second permet de regrouper dans deux fichiers (un pour le client et un pour le vendeur) l'order_id avec les informations de géolocalisation et le montant des frais de port pour le fichier concernant le vendeur.<br>
+                    Pour finir, le dernier reducer calcul la distance entre le client et le vendeur en fonction des coordonnées géographiques. cette distance est ensuite
+                    regroupée par tranche a laquelle on associe la moyenne des montant des frais de port.<br><br>
 
                     <h3>Analyse économique</h3>
-                    //TODO<br><br>
+                    On remarque que les frais de ports augmentent en fonction de la distance de livraison. Nous pouvons alors nous
+                    poser la question d'installer plusieurs entrepôts pour couvrir la superficie du pays. Il est également intéressant de
+                    coupler cette question avec question 3.<br><br>
 
                     <h3>Graphique</h3>
                     <canvas id="question2"></canvas>

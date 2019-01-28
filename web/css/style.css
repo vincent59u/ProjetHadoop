@@ -6,10 +6,24 @@
 
 body {
     padding-top: 54px;
+    text-align: justify;
 }
 
 @media (min-width: 992px) {
     body {
         padding-top: 56px;
     }
+}
+
+.list-group-item.active{
+    background-color: #30aeae;
+    border-color: #30aeae;
+}
+
+a{
+    color: #30aeae;
+}
+
+a:hover{
+    color: #6fccbf;
 }

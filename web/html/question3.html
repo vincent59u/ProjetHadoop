@@ -47,20 +47,37 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                        Le but de cette question est d'obtenir une corrélation ou non entre le délai de livraison et la note de satisfcation
+                        Le but de cette question est d'obtenir une corrélation ou non entre le délai de livraison et la note de satisfaction
                         pour savoir s'il faut adopter une stratégie de réduction des délais de livraison pour gagner en satisfaction clientèle.<br>
 
-                    <h3>Fichier et attributs utilisés</h3>
-                    //TODO<br><br>
+                    <h3>Fichiers et attributs utilisés</h3>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Fichiers</th>
+                            <th>Attributs</th>
+                        </tr>
+                        <tr>
+                            <td>olist_orders_dataset.csv</td>
+                            <td>order_id, order_approved_at, order_delivered_customer_date</td>
+                        </tr>
+                        <tr>
+                            <td>olist_order_reviews_dataset.csv</td>
+                            <td>order_id, review_score</td>
+                        </tr>
+                    </table>
 
                     <h3>Mapper</h3>
-                    //TODO<br><br>
+                    Le premier mapper permet de mettre en relation l'order_id avec le délai de livraison. Celui-ci est calculé en faisant une
+                    différence entre la date de confirmation de commande et la date de livraison pour chaque commande avec le statut "delivered".<br>
+                    Le second mapper associe aussi l'order_id avec la note de satisfaction donnée par le client.<br><br>
 
                     <h3>Redcucer</h3>
-                    //TODO<br><br>
+                    Le reducer à pour but de calculer la note moyenne de satisfaction ainsi que le nombre de commande en fonction du nombre de jours de livraison.<br><br>
 
                     <h3>Analyse économique</h3>
-                    //TODO<br><br>
+                    On remarque que la note de satisfaction est très élevée lorsque le délai ne dépasse pas six jours de livraison. Le second graphique nous permet de nuancer l'analyse
+                    parce que certains délais très long (supérieur à trois mois) qui possèdent une note très élevée ne concerne qu'une ou deux commandes. Dans
+                    ce cas précis le client était peut être au courant du délai de livraison important.<br><br>
 
                     <h3>Graphique</h3>
                     <canvas id="question3"></canvas>
