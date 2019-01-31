@@ -6,6 +6,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../web/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Leaflet core CSS -->
+    <link href="../../web/vendor/leaflet/leaflet.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../../web/css/style.css" rel="stylesheet">
 </head>
@@ -33,23 +35,24 @@
         <div class="col-lg-3">
             <h2 class="my-4">Questions</h2>
             <div class="list-group">
-                <a href="question1.html" class="list-group-item active">Question 1</a>
+                <a href="question1.html" class="list-group-item">Question 1</a>
                 <a href="question2.html" class="list-group-item">Question 2</a>
                 <a href="question3.html" class="list-group-item">Question 3</a>
                 <a href="question4.html" class="list-group-item">Question 4</a>
-                <a href="question5.html" class="list-group-item">Question 5</a>
+                <a href="question5.html" class="list-group-item active">Question 5</a>
             </div>
         </div>
         <div class="col-lg-9">
             <div class="card card-outline-secondary mt-4">
                 <div class="card-header">
-                    <h3 class="card-title">Question 1</h3>
-                    <h4>Catégories des produits les plus vendus</h4>
+                    <h3 class="card-title">Question 5</h3>
+                    <h4>Villes qui enregistrent le plus et/ou le moins de commande</h4>
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                    Le but de cette question est de connaitre les catégories des produits les plus vendus.
-                        Pour cela nous calculons le nombre de commande contenant des produits de chaque catégorie.<br>
+                    Cette question a pour but de déterminer les trois villes qui enregistrent le plus de commande et les trois qui
+                    en possède le moins. Cette question a été réalisée avec l'algorithme des K-means (Sur le même principe que le projet
+                    de l'année dernière).<br>
 
                     <h3>Fichiers et attributs utilisés</h3>
                     <table class="table table-bordered table-striped">
@@ -58,32 +61,32 @@
                             <th>Attributs</th>
                         </tr>
                         <tr>
-                            <td>olist_products_dataset.csv</td>
-                            <td>product_id, product_category_name</td>
+                            <td>customer_order_location-r-00000</td>
+                            <td>latitude, longitude</td>
                         </tr>
                         <tr>
-                            <td>olist_order_items_dataset.csv</td>
-                            <td>product_id</td>
+                            <td>centroids.csv</td>
+                            <td>cluster_id, latitude, longitude</td>
                         </tr>
                     </table>
+                    <small><sup>*</sup> customer_order_location-r-00000 provient de la question2. Le fichier centroids.csv a été créé aléatoirement</small>
 
                     <h3>Mapper</h3>
-                    Le premier mapper associe pour chaque product_id (clef) le nom de la catégorie de produit asociée. Le second quant à lui
-                    prend tous les product_id se trouvant dans les commandes passées en clef et prend 1 en valeur. En effet, on souhaite
-                    connaitre le nombre de fois qu'apparaissent les différentes catégories de produit dans les commandes (même principe que le wordCount).<br><br>
+                    Le premier mapper permet d'associer chaque coordonée GPS (latitude, longitude) des clients ayant effectué une commande au cluster_id qui correspond à la zone
+                    géographique la plus proche.<br>
+                    Le second mapper récupère le fichier de centroid et associe pour chaque couple latitude, longitude le nombre de commande.<br><br>
 
                     <h3>Redcucer</h3>
-                    Ce reducer à pour but, en sortie, d'écrire le nom de la catégorie de produit avec le nombre de fois qu'apparait cette même catégorie dans une commande.
-                    Le programme itère sur chaque clef (product_id) et fait la somme du nombre d'apparition (d'ou la valeur 1 dans le mapper). Pour finir chaque catégorie est regroupée puis triée de la plus
-                    importante à la moins importante. Une catégorie peut contenir plusieurs produits donc différents product_id, c'est pour cela que le nom des catégories apparaissent
-                    plusieurs fois.<br><br>
+                    Le premier reducer reçoit pour chaque cluster_id une liste de localisation. Il effectue une moyenne pour chaque cluster (calcul du centroid).
+                    Le job est répété jusqu'à ce que les centroids converge.<br>
+                    Le deuxième reducer selectionne uniquement les trois zones qui possède le plus de commande ainsi que les trois qui en possèdent le moins.<br><br>
 
                     <h3>Analyse économique</h3>
-                    Cette question nous permet de connaitre les secteurs d'activité les plus prolifiques. Il serait donc peu intéressant
-                    de se lancer dans un domaine qui vend que très peu de produit sauf si nous apportons une autre vision par rapport aux concurrents.<br><br>
+                    On peut voir que les zones qui enregistrent le plus de commande correspondent aux plus grandes villes du pays. Les villes dont les habitants consomment le moins sont situées
+                    dans les terres au centre du pays. Il serait donc plus judicieux de s'installer dans le sud du pays au bord de la côte.<br><br>
 
                     <h3>Graphique</h3>
-                    <canvas id="question1"></canvas>
+                    <div id="question5"></div>
                     </p>
                 </div>
             </div>
@@ -101,10 +104,10 @@
 
 <!-- Bootstrap core JavaScript -->
 <script src="../../web/vendor/jquery/jquery.min.js"></script>
-<script src="../../web/vendor/chartjs/chartjs.min.js"></script>
+<script src="../../web/vendor/leaflet/leaflet.js"></script>
 <script src="../../web/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Chart -->
-<script src="../js/question1.js"></script>
+<script src="../js/question5.js"></script>
 </body>
 </html>
