@@ -1,5 +1,6 @@
 package fr.miage.matthieu.question1;
 
+import fr.miage.matthieu.Utils;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -53,7 +54,7 @@ public class QuestionReducer extends Reducer<Text, Text, Text, IntWritable> {
     @Override
     public void cleanup(Context context)
     {
-        //Regroupement par même catégories de produit (Beaucoup de doublon dans les id
+        //Regroupement par même catégories de produit (Beaucoup de doublon dans les id)
         List<String> keyList = new ArrayList(product.keySet());
         keyList.forEach(key -> {
             if (resultat.containsKey(product.get(key))){
@@ -63,15 +64,7 @@ public class QuestionReducer extends Reducer<Text, Text, Text, IntWritable> {
             }
         });
 
-        //Ecriture
-        Object[] sorted = resultat.entrySet().toArray();
-        Arrays.sort(sorted, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                return ((Map.Entry<String, Integer>) o2).getValue()
-                        .compareTo(((Map.Entry<String, Integer>) o1).getValue());
-            }
-        });
-
+        Object[] sorted = Utils.sortByValue(resultat);
         for (Object s : sorted) {
             try {
                 context.write(new Text(((Map.Entry<String, Integer>) s).getKey()), new IntWritable(((Map.Entry<String, Integer>) s).getValue()));

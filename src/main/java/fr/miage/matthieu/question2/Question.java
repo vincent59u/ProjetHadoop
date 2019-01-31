@@ -1,8 +1,7 @@
 package fr.miage.matthieu.question2;
 
+import fr.miage.matthieu.Utils;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -11,9 +10,6 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Class Question qui calcul la moyenne des frais de ports en fonction de la distance de livraison
@@ -61,8 +57,8 @@ public class Question {
 
         if (job1.waitForCompletion(true)){
             //On bouge les fichiers générés dans le dossier data lorsque le job1 est terminé
-            moveFiles(TMP_OUTPUT_PATH, DATA, conf, "customersGeolocation-r-00000");
-            moveFiles(TMP_OUTPUT_PATH, DATA, conf, "sellersGeolocation-r-00000");
+            Utils.moveFiles(TMP_OUTPUT_PATH, DATA, conf, "customersGeolocation-r-00000");
+            Utils.moveFiles(TMP_OUTPUT_PATH, DATA, conf, "sellersGeolocation-r-00000");
 
             /**
              * DEUXIEME JOB
@@ -83,7 +79,7 @@ public class Question {
 
             if (job2.waitForCompletion(true)){
                 //On bouge les fichiers générés dans le dossier data lorsque le job2 est terminé
-                moveFiles(TMP_OUTPUT_PATH, DATA, conf, "customer_order_location-r-00000");
+                Utils.moveFiles(TMP_OUTPUT_PATH, DATA, conf, "customer_order_location-r-00000");
 
                 /**
                  * TROISIEME JOB
@@ -104,7 +100,7 @@ public class Question {
 
                 if (job3.waitForCompletion(true)){
                     //On bouge les fichiers générés dans le dossier data lorsque le job3 est terminé
-                    moveFiles(TMP_OUTPUT_PATH, DATA, conf, "seller_order_location-r-00000");
+                    Utils.moveFiles(TMP_OUTPUT_PATH, DATA, conf, "seller_order_location-r-00000");
 
                     //Quatrième job
                     Job job4 = Job.getInstance(conf, "Partie distance freight value - Moyenne des frais de ports en fonction de la distance de livraison");
@@ -136,28 +132,6 @@ public class Question {
             }
         }else{
             System.exit(1);
-        }
-    }
-
-    /**
-     * Méthode qui permet de déplacer les fichiers temporaires dans le dossier de data
-     * @link https://stackoverflow.com/questions/25622738/adding-output-files-to-an-existing-output-directory-in-mapreduce
-     * @param from
-     * @param to
-     * @param conf
-     * @param filename
-     * @throws IOException
-     */
-    private static void moveFiles(Path from, Path to, Configuration conf, String filename) throws IOException {
-        FileSystem fs = from.getFileSystem(conf);
-        for (FileStatus status : fs.listStatus(from)) {
-            Path file = status.getPath();
-            if (file.getName().equals(filename)) {
-                //On delete le fichier existant dans le dossier des data
-                fs.delete(new Path(to.toString() + "/" + filename), true);
-                Path dst = new Path(to, file.getName());
-                fs.rename(file, dst);
-            }
         }
     }
 }
