@@ -76,7 +76,7 @@
                     géographique la plus proche.<br>
                     Le second mapper récupère le fichier de centroid et associe pour chaque couple latitude, longitude le nombre de commande.<br><br>
 
-                    <h3>Redcucer</h3>
+                    <h3>Reducer</h3>
                     Le premier reducer reçoit pour chaque cluster_id une liste de localisation. Il effectue une moyenne pour chaque cluster (calcul du centroid).
                     Le job est répété jusqu'à ce que les centroids converge.<br>
                     Le deuxième reducer selectionne uniquement les trois zones qui possède le plus de commande ainsi que les trois qui en possèdent le moins.<br><br>

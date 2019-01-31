@@ -103,7 +103,7 @@
                     à partir des fichiers customersGeolocation-r-00000, olist_orders_dataset.csv, sellersGeolocation-r-00000, olist_order_items_dataset.csv<br>
                     Enfin, un dernier mapper associe pour chaque commande les informations de géolocalisation des clients et vendeurs ainsi que le montant des frais de ports. Ce mapper s'effectue sur les deux derniers fichiers du tableau précédent.<br><br>
 
-                    <h3>Redcucer</h3>
+                    <h3>Reducer</h3>
                     Comme cette question nécessite trois mappers différents, il y a donc trois reducers.<br>
                     Le premier génère deux fichiers qui sont customersGeolocation-r-00000 et sellersGeolocation-r-00000 qui contiennent le customer_id ou seller_id avec la latitude et longitude.<br>
                     Le second permet de regrouper dans deux fichiers (un pour le client et un pour le vendeur) l'order_id avec les informations de géolocalisation et le montant des frais de port pour le fichier concernant le vendeur.<br>
