@@ -38,6 +38,7 @@ public class Question {
         /**
          * PREMIER JOB
          */
+        /*
         Job job1 = Job.getInstance(conf, "Partie géolocation - Moyenne des frais de ports en fonction de la distance de livraison");
         job1.setJarByClass(fr.miage.matthieu.question2.Question.class);
 
@@ -63,6 +64,7 @@ public class Question {
             /**
              * DEUXIEME JOB
              */
+        /*
             Job job2 = Job.getInstance(conf, "Partie commande customer - Moyenne des frais de ports en fonction de la distance de livraison");
             job2.setJarByClass(fr.miage.matthieu.question2.Question.class);
             job2.getConfiguration().set("mapreduce.output.basename", "customer_order_location");
@@ -84,6 +86,7 @@ public class Question {
                 /**
                  * TROISIEME JOB
                  */
+        /*
                 Job job3 = Job.getInstance(conf, "Partie commande seller - Moyenne des frais de ports en fonction de la distance de livraison");
                 job3.setJarByClass(fr.miage.matthieu.question2.Question.class);
                 job3.getConfiguration().set("mapreduce.output.basename", "seller_order_location");
@@ -102,7 +105,9 @@ public class Question {
                     //On bouge les fichiers générés dans le dossier data lorsque le job3 est terminé
                     Utils.moveFiles(TMP_OUTPUT_PATH, DATA, conf, "seller_order_location-r-00000");
 
-                    //Quatrième job
+                    /**
+                     * QUATRIEME JOB
+                     */
                     Job job4 = Job.getInstance(conf, "Partie distance freight value - Moyenne des frais de ports en fonction de la distance de livraison");
                     job4.setJarByClass(fr.miage.matthieu.question2.Question.class);
 
@@ -124,7 +129,7 @@ public class Question {
                     }else{
                         System.exit(1);
                     }
-                }else{
+                /*}else{
                     System.exit(1);
                 }
             }else{
@@ -132,6 +137,6 @@ public class Question {
             }
         }else{
             System.exit(1);
-        }
+        }*/
     }
 }

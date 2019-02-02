@@ -30,7 +30,7 @@ public class Question {
         MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, fr.miage.matthieu.question3.OrderMapper.class);
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, fr.miage.matthieu.question3.OrderReviewMapper.class);
 
-        Path outputPath = new Path("./output/Question3");
+        Path outputPath = new Path("./output/question3");
         FileOutputFormat.setOutputPath(job, outputPath);
         outputPath.getFileSystem(conf).delete(outputPath,true);
 
